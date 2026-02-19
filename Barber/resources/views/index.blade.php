@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Imko Barber</title>
-    <meta charset="utf-8">
+@extends('layouts.mainLayout')
 
-    @vite('resources/css/style.css')
+@section('title', 'Imko Barber')
 
+@section('styles')
+    @vite('resources/css/test.css')
+@endsection
+
+@section('content')
     <h1>Bienvenue sur le site du barber !</h1>
-</head>
-
-<body>
     <p>Que voulez-vous faire ?</p>
+
     <main>
         <select id="choix">
             <option value="1">Sélectionnez une option</option>
@@ -18,5 +17,9 @@
             <option value="3">Annuler un rendez-vous</option>
             <option value="4">Déposer un avis</option>
         </select>
+
+        <article>
+            <p>Contact : 01 23 45 67 89</p>
+        </article>
     </main>
-</body>
+@endsection
