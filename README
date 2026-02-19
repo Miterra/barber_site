@@ -1,4 +1,4 @@
-### Utilisation de commande
+## Utilisation de commande
 php artisan serve --> Lancer le serveur (html sera update)
 npm run dev --> Appliquer le css dans un autre terminal en ayant le serveur ouvert (css sera update)
 
