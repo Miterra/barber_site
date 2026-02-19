@@ -4,6 +4,7 @@
 
 @section('styles')
     @vite('resources/css/test.css')
+    @vite('resources/js/index.js')
 @endsection
 
 @section('content')
@@ -12,14 +13,15 @@
 
     <main>
         <select id="choix">
-            <option value="1">Sélectionnez une option</option>
-            <option value="2">Prendre rendez-vous</option>
-            <option value="3">Annuler un rendez-vous</option>
-            <option value="4">Déposer un avis</option>
+            <option value="">Sélectionnez une option</option>
+            <option value="{{ route('contact') }}">Contact</option>
+            <option value="{{ route('photos') }}">Photos du service</option>
         </select>
+        <br>
+        <a href="{{ route('rdv') }}">Je veux prendre rendez-vous !</a>
 
         <article>
-            <p>Contact : 01 23 45 67 89</p>
+            <p>Insta : imran6.7</p>
         </article>
     </main>
 @endsection
