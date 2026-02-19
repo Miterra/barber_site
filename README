@@ -6,4 +6,3 @@ php artisan migrate --> Créer les tables (applique les modèles)
 php artisan make:model --> Créer un modèle
 php artisan make:controller --> Créer un contrôleur
 php artisan route:list --> Voir les routes
-
