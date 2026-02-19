@@ -12,3 +12,7 @@ html {
 h1 {
     color: red;
 }
+
+article {
+    text-align: center;
+}
