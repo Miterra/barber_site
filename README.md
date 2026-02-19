@@ -1,8 +1,1 @@
-## Utilisation de commande
-php artisan serve --> Lancer le serveur (html sera update)
-npm run dev --> Appliquer le css dans un autre terminal en ayant le serveur ouvert (css sera update)
 
-php artisan migrate --> Créer les tables (applique les modèles)
-php artisan make:model --> Créer un modèle
-php artisan make:controller --> Créer un contrôleur
-php artisan route:list --> Voir les routes
