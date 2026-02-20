@@ -1,48 +1,48 @@
 @extends('layouts.mainLayout')
 
-@section('content')
+@section('title', 'Prendre un Rendez-vous')
 
 @section('styles')
-    @vite('resources/css/rdv.css')
+    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @vite('resources/css/rdv.css') <!-- ton nouveau CSS -->
 @endsection
 
-<div class="rdv-container">
-    <h1>Prendre rendez-vous</h1>
+@section('content')
+    <h1 class="rdv-title">Prendre un rendez-vous</h1>
 
-    <form action="{{ route('rdv.store') }}" method="POST">
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
+    <form method="POST" action="{{ route('rdv.store') }}" class="rdv-form">
         @csrf
-
-        <!-- Email -->
         <div class="form-group">
             <label for="email">Votre email</label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" name="email" id="email" required placeholder="ex: email@exemple.com">
         </div>
 
-        <!-- Date -->
         <div class="form-group">
             <label for="date">Choisissez une date</label>
-            <input type="date" name="date" id="date" required>
+            <input type="text" name="date" id="date" required placeholder="YYYY-MM-DD">
         </div>
 
-        <!-- Heure -->
         <div class="form-group">
             <label for="heure">Choisissez une heure</label>
             <select name="heure" id="heure" required>
                 <option value="">-- Sélectionner une heure --</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
             </select>
         </div>
 
-        <button type="submit" class="btn-confirm">
-            Confirmer le rendez-vous
-        </button>
-
+        <button type="submit" class="btn-submit">Confirmer le rendez-vous</button>
     </form>
-</div>
+@endsection
 
+@section('scripts')
+    @vite('resources/js/rdv.js')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @endsection

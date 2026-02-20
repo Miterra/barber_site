@@ -10,5 +10,6 @@
     @include('shared.message')
 
     @yield('content')
+    @yield('scripts')
 </body>
 </html>
