@@ -5,5 +5,4 @@ npm run dev --> Applique les @vite qui font marcher les css et js --> commande d
 php artisan migrate --> Créer les tables (applique les modèles)
 php artisan make:model --> Créer un modèle
 php artisan make:controller --> Créer un contrôleur
-<<<<<<< HEAD
 php artisan route:list --> Voir les routes

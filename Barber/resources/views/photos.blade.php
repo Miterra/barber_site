@@ -3,7 +3,7 @@
 @section('title', 'Imko Photos')
 
 @section('styles')
-    @vite('resources/css/test.css')
+    @vite('resources/css/index.css')
 @endsection
 
 @section('content')

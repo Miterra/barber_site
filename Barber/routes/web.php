@@ -31,9 +31,6 @@ Route::get('/photos', function () {
 | Routes RDV (clients)
 |--------------------------------------------------------------------------
 */
-Route::get('/rdv/available-hours', [RdvController::class, 'getAvailableHours'])
-    ->name('rdv.available-hours');
-
 Route::get('/rdv/events', [RdvController::class, 'events'])
     ->name('rdv.events');
 
@@ -42,24 +39,23 @@ Route::post('/rdv', [RdvController::class, 'store'])
 
 /*
 |--------------------------------------------------------------------------
-| Routes Admin (login, dashboard, RDV, disponibilités)
+| Routes Admin
 |--------------------------------------------------------------------------
 */
-// Login / logout admin
+
+// Login admin
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
-// Routes protégées par auth + admin
+// Dashboard (middleware pour vérifier si admin)
 Route::middleware(['auth', 'admin'])->group(function () {
-
-    // Dashboard
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-    // Supprimer un RDV
+    // RDV routes
     Route::delete('/admin/rdv/{id}', [AdminController::class, 'deleteRdv'])->name('admin.deleteRdv');
 
-    // Gestion disponibilités
+    // Disponibilités routes
     Route::post('/admin/disponibilites', [AdminController::class, 'disponibilitesStore'])->name('admin.disponibilitesStore');
     Route::delete('/admin/disponibilites/{id}', [AdminController::class, 'deleteDisponibilite'])->name('admin.deleteDisponibilite');
 });
@@ -75,9 +71,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Auth Breeze (login, register, etc.)
-|--------------------------------------------------------------------------
-*/
 require __DIR__.'/auth.php';
