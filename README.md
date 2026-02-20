@@ -6,3 +6,10 @@ php artisan migrate --> Créer les tables (applique les modèles)
 php artisan make:model --> Créer un modèle
 php artisan make:controller --> Créer un contrôleur
 php artisan route:list --> Voir les routes
+
+## Reprise du code
+
+une fois git clone
+commande à exécuter dans le terminal :
+- composer install
+- npm install
