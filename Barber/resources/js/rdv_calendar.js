@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
+    var rdvForm = document.getElementById('rdvForm');
+    var rdvDateInput = document.getElementById('rdvDate');
+    var rdvHeureInput = document.getElementById('rdvHeure');
     var selectedEvent = null;
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -7,44 +10,47 @@ document.addEventListener('DOMContentLoaded', function() {
         locale: 'fr',
         firstDay: 1,
         slotMinTime: "08:00:00",
-        slotMaxTime: "23:00:00",
+        slotMaxTime: "22:30:00",
         allDaySlot: false,
         selectable: true,
-        selectMirror: false,      // pas de drag mirror
-        selectOverlap: false,     // pas de sélection sur un créneau réservé
-        slotDuration: "00:30:00", // 30min
-        selectLongPressDelay: 0,  // ⚡ permet un simple clic pour sélectionner
+        selectMirror: false,
+        selectOverlap: false,
+        slotDuration: "00:30:00",
+        selectLongPressDelay: 0,
         events: '/rdv/events',
-
-        // Format 24h
         slotLabelFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
         eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
 
         select: function(info) {
-            // Supprime ancienne sélection si elle existe
-            if(selectedEvent) {
-                selectedEvent.remove();
-                selectedEvent = null;
-            }
+            // Supprime ancienne sélection
+            if(selectedEvent) selectedEvent.remove();
 
-            // Crée l'événement bleu pour la sélection
+            // Crée un petit événement bleu sur le calendrier
             selectedEvent = calendar.addEvent({
-                title: info.startStr.substring(11,16), // juste l'heure
+                title: info.startStr.substring(11,16),
                 start: info.start,
                 end: info.end,
-                color: '#3498db',         // bleu
+                color: '#3498db',
                 textColor: 'white',
                 editable: false
             });
 
-            // Remplit le formulaire caché
-            document.getElementById('rdvDate').value = info.startStr.split('T')[0];
-            document.getElementById('rdvHeure').value = info.startStr.split('T')[1].substring(0,5);
+            // Remplir le formulaire caché
+            rdvDateInput.value = info.startStr.split('T')[0];
+            rdvHeureInput.value = info.startStr.split('T')[1].substring(0,5);
 
             // Affiche le formulaire
-            document.getElementById('rdvForm').style.display = 'block';
+            rdvForm.style.display = 'block';
         }
     });
 
     calendar.render();
+
+    // Vérifie que le formulaire n'est pas soumis sans heure
+    rdvForm.addEventListener('submit', function(e) {
+        if(!rdvHeureInput.value){
+            e.preventDefault();
+            alert('Veuillez sélectionner un créneau sur le calendrier.');
+        }
+    });
 });

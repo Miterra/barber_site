@@ -9,5 +9,10 @@ class Rdv extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['prenom', 'email', 'date', 'heure'];
+    protected $fillable = [
+        'prenom',
+        'email',
+        'date',
+        'heure', // <- obligatoire pour éviter l'erreur NOT NULL
+    ];
 }

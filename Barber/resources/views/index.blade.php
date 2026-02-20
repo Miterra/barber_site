@@ -3,13 +3,18 @@
 @section('title', 'Imko Barber')
 
 @section('styles')
-    @vite('resources/css/test.css')
+    @vite('resources/css/index.css')
     @vite('resources/js/index.js')
 @endsection
 
 @section('content')
     <h1>Bienvenue sur le site du barber !</h1>
     <p>Que voulez-vous faire ?</p>
+
+    <a href="{{ route('admin.login') }}" class="admin-btn">
+    Admin
+</a>
+</div>
 
     <main>
         <select id="choix">
